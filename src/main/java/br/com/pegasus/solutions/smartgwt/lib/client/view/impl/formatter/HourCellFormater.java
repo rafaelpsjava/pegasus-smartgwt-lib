@@ -1,0 +1,81 @@
+/*
+ * Copyright 2015 Pegasus Solutions
+ * @author Rafael Peres dos Santos
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by
+ * applicable law or agreed to in writing, software distributed under the
+ * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
+ * OF ANY KIND, either express or implied. See the License for the specific
+ * language governing permissions and limitations under the License.
+ *
+ * ================================================================================
+ *
+ * Direitos autorais 2015 Pegasus Solutions
+ * @author Rafael Peres dos Santos
+ * 
+ * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode usar
+ * esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma
+ * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que
+ * haja exigência legal ou acordo por escrito, a distribuição de software sob
+ * esta LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER
+ * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
+ * reger permissões e limitações sob esta LICENÇA.
+ *
+ */
+package br.com.pegasus.solutions.smartgwt.lib.client.view.impl.formatter;
+
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.smartgwt.client.widgets.grid.CellFormatter;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
+import java.util.Date;
+
+public final class HourCellFormater implements CellFormatter {
+	private static HourCellFormater hourCellFormater;
+
+	private HourCellFormater() {
+	}
+
+	/**
+	 * format
+	 * 
+	 * @param value
+	 *            {@link Object}
+	 * @param record
+	 *            {@link ListGridRecord}
+	 * @param rowNum
+	 *            int
+	 * @param colNum
+	 *            int
+	 * @return {@link String}
+	 */
+	public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
+		if (value != null) {
+			try {
+				if (value instanceof Date) {
+					Date date = (Date) value;
+					return DateTimeFormat.getFormat("HH:mm").format(date);
+				}
+				return "";
+			} catch (Exception e) {
+				return value.toString();
+			}
+		}
+		return "";
+	}
+
+	/**
+	 * @return {@link HourCellFormater} singlegton instance
+	 */
+	public static HourCellFormater getInstance() {
+		if (hourCellFormater == null) {
+			synchronized (HourCellFormater.class) {
+				if (hourCellFormater == null) {
+					hourCellFormater = new HourCellFormater();
+				}
+			}
+		}
+		return hourCellFormater;
+	}
+}

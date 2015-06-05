@@ -1,0 +1,15 @@
+package br.com.pegasus.solutions.zws.ejb.model.constants;
+
+public final class ZwsConstants {
+	
+	private ZwsConstants(){
+	}
+	
+	// CMT
+	public static final String BO_CMT_COMMON_PATH = "bo_cmt_api_";
+	public static final String DAO_STATELESS_COMMON_CMT_PATH = "dao_cmt_api_";
+	
+	public static final String XA_MYSQL_PU = "zwsXAMysqlPU";
+
+	public static final String DEFAULT_PU = XA_MYSQL_PU; 
+}
